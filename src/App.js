@@ -19,7 +19,7 @@ function App() {
       <h1>crypto-dice</h1>
       <p>The game to bet on your coin's next transaction</p>
       <br />
-      {<p>Bitcoin: {bitcoinPrice}</p>}
+      {<p>Bitcoin: ${parseFloat(bitcoinPrice).toFixed(2)}</p>}
       <br />
     </div>
   );
