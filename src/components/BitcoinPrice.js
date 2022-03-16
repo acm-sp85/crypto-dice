@@ -41,7 +41,6 @@ const BitcoinPrice = () => {
       return <div style={{color: 'white'}}>Error: {socketError}</div>
     }
 
-    // const formattedCurrency = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(parseFloat(bitcoinPrice).toFixed(2))
     const formattedCurrency = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(bitcoinPrice)
 
     return (
