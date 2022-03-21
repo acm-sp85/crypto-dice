@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-const BitcoinPrice = (props) => {
+const BitcoinPrice = ({setLivePrice}) => {
   const [bitcoinPrice, setBitcoinPrice] = useState(null);
   const [socketError, setSocketError] = useState(null);
 
@@ -15,7 +15,7 @@ const BitcoinPrice = (props) => {
       let messageObject = JSON.parse(event.data);
       setBitcoinPrice(messageObject.p);
       // bubbling up the price to our App's state
-      props.setLivePrice(messageObject.p);
+      setLivePrice(messageObject.p);
     };
 
     // handle error state
