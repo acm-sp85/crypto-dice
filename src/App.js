@@ -108,7 +108,7 @@ function App() {
         check!
       </button>
       <br />
-      {showResults ? (
+      {showResults && (
         <StyledResultsContainer>
           {/* If we have results to show we render the Results component */}
           <Results
@@ -121,8 +121,6 @@ function App() {
             betType={betType}
           />
         </StyledResultsContainer>
-      ) : (
-        <></>
       )}
     </div>
   );
