@@ -1,6 +1,17 @@
 import React, { useEffect, useState } from 'react';
+import styled, { css } from 'styled-components'
 
-const BitcoinPrice = ({setLivePrice}) => {
+const StyledPriceContainer = styled.div`
+  padding: 20px;
+  max-width: 300px;
+
+  ${({isSelected}) => isSelected && css`
+    border: 1px solid green;
+  `}
+`
+
+
+const BitcoinPrice = ({setCurrentPrice, referencePrice}) => {
   const [bitcoinPrice, setBitcoinPrice] = useState(null);
   const [socketError, setSocketError] = useState(null);
 
@@ -15,7 +26,7 @@ const BitcoinPrice = ({setLivePrice}) => {
       let messageObject = JSON.parse(event.data);
       setBitcoinPrice(messageObject.p);
       // bubbling up the price to our App's state
-      setLivePrice(messageObject.p);
+      setCurrentPrice(messageObject.p);
     };
 
     // handle error state
@@ -48,7 +59,12 @@ const BitcoinPrice = ({setLivePrice}) => {
     currency: 'USD',
   }).format(bitcoinPrice);
 
-  return <div style={{ color: 'white' }}>{formattedCurrency}</div>;
+  return (
+    <div style={{display: 'flex', justifyContent: 'center', width: '100%'}}>
+      <StyledPriceContainer isSelected={!!referencePrice} style={{ color: 'white' }}>
+        {referencePrice || formattedCurrency}
+      </StyledPriceContainer>;
+    </div>)
 };
 
 export default BitcoinPrice;
