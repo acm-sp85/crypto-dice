@@ -26,15 +26,18 @@ function App() {
   // our game logic. It is buggy at the time, it seems to be one step behind
   const checkPrice = () => {
     if (referencePrice > formattedCurrency && betType === UP_TYPE) {
-      console.log('You loose', { referencePrice, formattedCurrency, betType });
+      // TODO: let's add some UI state to let them know they won
+      // console.log('You loose', { referencePrice, formattedCurrency, betType });
     } else if (referencePrice < formattedCurrency && betType === DOWN_TYPE) {
-      console.log('You loose', { referencePrice, formattedCurrency, betType });
+      // TODO: let's add some UI state to let them know they lost
+      // console.log('You loose', { referencePrice, formattedCurrency, betType });
     } else if (referencePrice === formattedCurrency) {
-      console.log("It's a tie, try again", {
-        referencePrice,
-        formattedCurrency,
-        betType,
-      });
+      // TODO: let's add some UI state to let them know they need to try again
+      // console.log("It's a tie, try again", {
+      //   referencePrice,
+      //   formattedCurrency,
+      //   betType,
+      // });
     } else {
       console.log('You win', { referencePrice, formattedCurrency, betType });
     }
