@@ -18,12 +18,12 @@ const CurrencyPrice = ({ setCurrentPrice, referencePrice, currency }) => {
 
   useEffect(() => {
     // initialize bitcoin web socket
-    const bitcoinSocket = new WebSocket(
-      'wss://stream.binance.com:9443/ws/btcusdt@trade'
+    const currencySocket = new WebSocket(
+      `wss://stream.binance.com:9443/ws/${currency.toLowerCase()}usdt@trade`
     );
 
     // set price on message
-    bitcoinSocket.onmessage = function (event) {
+    currencySocket.onmessage = function (event) {
       let messageObject = JSON.parse(event.data);
       setCurrencyPrice(messageObject.p);
       // bubbling up the price to our App's state
@@ -36,15 +36,15 @@ const CurrencyPrice = ({ setCurrentPrice, referencePrice, currency }) => {
         setSocketError(event.message);
       }
     };
-    bitcoinSocket.addEventListener('error', handleSocketError);
+    currencySocket.addEventListener('error', handleSocketError);
 
     // close socket/remove listener when this component unmounts
     // to avoid memory leaks
     return () => {
-      bitcoinSocket.removeEventListener('error', handleSocketError);
-      bitcoinSocket.close();
+      currencySocket.removeEventListener('error', handleSocketError);
+      currencySocket.close();
     };
-  }, []);
+  }, [currency]);
 
   // if no error or data, assume it's loading
   if (!socketError && !currencyPrice) {

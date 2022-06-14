@@ -86,7 +86,7 @@ function App() {
         <option value="BTC">Bitcoin (BTC)</option>
         <option value="ETH">Ethereum (ETH)</option>
         <option value="DOGE">Dogecoin (DOGE)</option>
-        <option value="SHIB">Shiba Inu (SHIB)</option>
+        <option value="ADA">Cardano (ADA)</option>
       </select>
       {/* passing setLivePrice as a prop to our CurrencyPrice component */}
       <CurrencyPrice
