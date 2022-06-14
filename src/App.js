@@ -1,4 +1,4 @@
-import BitcoinPrice from './components/BitcoinPrice';
+import CurrencyPrice from './components/CurrencyPrice';
 import './App.css';
 import { useState } from 'react';
 import Results from './components/Results';
@@ -88,12 +88,13 @@ function App() {
         <option value="DOGE">Dogecoin (DOGE)</option>
         <option value="SHIB">Shiba Inu (SHIB)</option>
       </select>
-      {/* passing setLivePrice as a prop to our BitcoinPrice component */}
-      <BitcoinPrice
+      {/* passing setLivePrice as a prop to our CurrencyPrice component */}
+      <CurrencyPrice
         setCurrentPrice={setCurrentPrice}
         referencePrice={referencePrice}
+        currency={currency}
       />
-      {<p>{currency}</p>}
+
       <br />
       <div>
         {referencePrice ? (

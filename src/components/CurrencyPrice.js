@@ -1,18 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import styled, { css } from 'styled-components'
+import styled, { css } from 'styled-components';
 
 const StyledPriceContainer = styled.div`
   padding: 20px;
   max-width: 300px;
 
-  ${({isSelected}) => isSelected && css`
-    border: 1px solid green;
-  `}
-`
+  ${({ isSelected }) =>
+    isSelected &&
+    css`
+      border: 1px solid green;
+    `}
+`;
 
-
-const BitcoinPrice = ({setCurrentPrice, referencePrice}) => {
-  const [bitcoinPrice, setBitcoinPrice] = useState(null);
+const CurrencyPrice = ({ setCurrentPrice, referencePrice, currency }) => {
+  const [currencyPrice, setCurrencyPrice] = useState(null);
   const [socketError, setSocketError] = useState(null);
 
   useEffect(() => {
@@ -24,7 +25,7 @@ const BitcoinPrice = ({setCurrentPrice, referencePrice}) => {
     // set price on message
     bitcoinSocket.onmessage = function (event) {
       let messageObject = JSON.parse(event.data);
-      setBitcoinPrice(messageObject.p);
+      setCurrencyPrice(messageObject.p);
       // bubbling up the price to our App's state
       setCurrentPrice(messageObject.p);
     };
@@ -46,7 +47,7 @@ const BitcoinPrice = ({setCurrentPrice, referencePrice}) => {
   }, []);
 
   // if no error or data, assume it's loading
-  if (!socketError && !bitcoinPrice) {
+  if (!socketError && !currencyPrice) {
     return <div style={{ color: 'white' }}>Loading ...</div>;
   }
 
@@ -57,14 +58,20 @@ const BitcoinPrice = ({setCurrentPrice, referencePrice}) => {
   const formattedCurrency = new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD',
-  }).format(bitcoinPrice);
+  }).format(currencyPrice);
 
   return (
-    <div style={{display: 'flex', justifyContent: 'center', width: '100%'}}>
-      <StyledPriceContainer isSelected={!!referencePrice} style={{ color: 'white' }}>
+    <div style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
+      <StyledPriceContainer
+        isSelected={!!referencePrice}
+        style={{ color: 'white' }}
+      >
         {referencePrice || formattedCurrency}
-      </StyledPriceContainer>;
-    </div>)
+        {currency}
+      </StyledPriceContainer>
+      ;
+    </div>
+  );
 };
 
-export default BitcoinPrice;
+export default CurrencyPrice;
