@@ -41,6 +41,7 @@ function App() {
   const [betPrice, setBetPrice] = useState(null);
   const [showResults, setShowResults] = useState(false);
   const [message, setMessage] = useState(null);
+  const [credits, setCredits] = useState(3);
 
   // instantiating our currency formatter
   let formattedCurrency = new Intl.NumberFormat('en-US', {
@@ -67,8 +68,10 @@ function App() {
     setBetPrice(formattedCurrency);
     if (referencePrice > formattedCurrency && betType === UP_TYPE) {
       setMessage('You loose!');
+      setCredits(credits - 1);
     } else if (referencePrice < formattedCurrency && betType === DOWN_TYPE) {
       setMessage('You loose!');
+      setCredits(credits - 1);
     } else if (referencePrice === formattedCurrency) {
       setMessage("It's a tie, try again");
     } else {
@@ -119,7 +122,11 @@ function App() {
           <>
             <p>Start by selecting a reference price</p>
             <br />
-            <Button onClick={selectReference}>set reference</Button>
+            {credits > 0 ? (
+              <Button onClick={selectReference}>set reference</Button>
+            ) : (
+              <Button onClick={() => setCredits(3)}>buy more credits</Button>
+            )}
           </>
         )}
       </div>
@@ -141,6 +148,8 @@ function App() {
           />
         </StyledResultsContainer>
       )}
+      <br />
+      <h3>Credits left: {credits}</h3>
     </div>
   );
 }

@@ -17,7 +17,7 @@ const CurrencyPrice = ({ setCurrentPrice, referencePrice, currency }) => {
   const [socketError, setSocketError] = useState(null);
 
   useEffect(() => {
-    // initialize bitcoin web socket
+    // initialize currency web socket
     const currencySocket = new WebSocket(
       `wss://stream.binance.com:9443/ws/${currency.toLowerCase()}usdt@trade`
     );
