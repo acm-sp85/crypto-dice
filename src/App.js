@@ -1,8 +1,11 @@
-import BitcoinPrice from './components/BitcoinPrice';
+import CurrencyPrice from './components/CurrencyPrice';
 import './App.css';
 import { useState } from 'react';
 import Results from './components/Results';
-import styled, { css } from 'styled-components';
+// added Button from Antd library, at the moment is not really kicking in
+import { Button } from 'antd';
+// import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 const UP_TYPE = 'up';
 const DOWN_TYPE = 'down';
@@ -31,12 +34,14 @@ const StyledResultsContainer = styled.div`
 
 function App() {
   //adding pieces of state with the currentPrice of our currency, our Reference selection, our BetBehaviour and the NextPrice
+  const [currency, setCurrency] = useState('BTC');
   const [currentPrice, setCurrentPrice] = useState(null);
   const [referencePrice, setReferencePrice] = useState(null);
   const [betType, setBetType] = useState(null);
   const [betPrice, setBetPrice] = useState(null);
   const [showResults, setShowResults] = useState(false);
   const [message, setMessage] = useState(null);
+  const [credits, setCredits] = useState(3);
 
   // instantiating our currency formatter
   let formattedCurrency = new Intl.NumberFormat('en-US', {
@@ -44,10 +49,16 @@ function App() {
     currency: 'USD',
   }).format(currentPrice);
 
-  // function to setReferencePrice when button onClick
+  // function to setReferencePrice when Button onClick
   const selectReference = () => {
     setReferencePrice(formattedCurrency);
     console.log('reference: ' + formattedCurrency);
+  };
+
+  // function to select t(he currency
+  const selectCurrency = (e) => {
+    console.log(e.target.value);
+    setCurrency(e.target.value);
   };
 
   // once we check the price we activate our modal to show the results of our bet
@@ -57,8 +68,10 @@ function App() {
     setBetPrice(formattedCurrency);
     if (referencePrice > formattedCurrency && betType === UP_TYPE) {
       setMessage('You loose!');
+      setCredits(credits - 1);
     } else if (referencePrice < formattedCurrency && betType === DOWN_TYPE) {
       setMessage('You loose!');
+      setCredits(credits - 1);
     } else if (referencePrice === formattedCurrency) {
       setMessage("It's a tie, try again");
     } else {
@@ -71,11 +84,20 @@ function App() {
       <h1>crypto-dice</h1>
       <p>The game to bet on your coin's next transaction</p>
       <br />
-      {/* passing setLivePrice as a prop to our BitcoinPrice component */}
-      <BitcoinPrice
+      {/* Dropdown menu to select what currency we want to be playing with */}
+      <select id="currency" value={currency} onChange={selectCurrency}>
+        <option value="BTC">Bitcoin (BTC)</option>
+        <option value="ETH">Ethereum (ETH)</option>
+        <option value="DOGE">Dogecoin (DOGE)</option>
+        <option value="ADA">Cardano (ADA)</option>
+      </select>
+      {/* passing setLivePrice as a prop to our CurrencyPrice component */}
+      <CurrencyPrice
         setCurrentPrice={setCurrentPrice}
         referencePrice={referencePrice}
+        currency={currency}
       />
+
       <br />
       <div>
         {referencePrice ? (
@@ -83,30 +105,34 @@ function App() {
             <p>Your reference price was set at {referencePrice}</p>
             <p>Now bet to see if the price is going up or down...</p>
             <br />
-            <button
+            <Button
               disabled={betType === DOWN_TYPE}
               onClick={() => setBetType(UP_TYPE)}
             >
               🔺
-            </button>
-            <button
+            </Button>
+            <Button
               disabled={betType === UP_TYPE}
               onClick={() => setBetType(DOWN_TYPE)}
             >
               🔻
-            </button>
+            </Button>
           </>
         ) : (
           <>
             <p>Start by selecting a reference price</p>
             <br />
-            <button onClick={selectReference}>set reference</button>
+            {credits > 0 ? (
+              <Button onClick={selectReference}>set reference</Button>
+            ) : (
+              <Button onClick={() => setCredits(3)}>buy more credits</Button>
+            )}
           </>
         )}
       </div>
-      <button disabled={!betType} onClick={checkPrice}>
+      <Button disabled={!betType} onClick={checkPrice}>
         check!
-      </button>
+      </Button>
       <br />
       {showResults && (
         <StyledResultsContainer>
@@ -122,6 +148,8 @@ function App() {
           />
         </StyledResultsContainer>
       )}
+      <br />
+      <h3>Credits left: {credits}</h3>
     </div>
   );
 }
