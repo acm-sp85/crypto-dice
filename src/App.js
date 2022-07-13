@@ -88,7 +88,12 @@ function App() {
         </p>
         <br />
         {/* Dropdown menu to select what currency we want to be playing with */}
-        <select id="currency" value={currency} onChange={selectCurrency}>
+        <select
+          id="currency"
+          value={currency}
+          onChange={selectCurrency}
+          className="custom-select"
+        >
           <option value="BTC">Bitcoin (BTC)</option>
           <option value="ETH">Ethereum (ETH)</option>
           <option value="DOGE">Dogecoin (DOGE)</option>
@@ -143,6 +148,7 @@ function App() {
           disabled={!betType}
           onClick={checkPrice}
           className="custom-button"
+          style={{ marginTop: '15px' }}
         >
           check!
         </button>

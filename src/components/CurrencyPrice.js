@@ -2,13 +2,15 @@ import React, { useEffect, useState } from 'react';
 import styled, { css } from 'styled-components';
 
 const StyledPriceContainer = styled.div`
-  padding: 20px;
+  padding: 10px;
+  margin-top: 10px;
   max-width: 300px;
 
   ${({ isSelected }) =>
     isSelected &&
     css`
       border: 1px solid green;
+      border-radius: 2px;
     `}
 `;
 
@@ -64,7 +66,11 @@ const CurrencyPrice = ({ setCurrentPrice, referencePrice, currency }) => {
     <div style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
       <StyledPriceContainer
         isSelected={!!referencePrice}
-        style={{ color: 'white' }}
+        style={{
+          color: 'rgb(216, 195, 34)',
+          fontFamily: 'VT323',
+          fontSize: '3rem',
+        }}
       >
         {referencePrice || formattedCurrency}
         {currency}
