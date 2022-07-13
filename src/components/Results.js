@@ -26,7 +26,7 @@ function Results({
 
   return (
     <div>
-      {credits > 4 ? (
+      {credits > 9 ? (
         <>
           <ConfettiExplosion />
           <h1>YOU WIN</h1>
