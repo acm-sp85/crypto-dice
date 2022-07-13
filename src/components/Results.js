@@ -1,3 +1,5 @@
+import ConfettiExplosion from './ConfettiExplosion';
+
 function Results({
   message,
   setReferencePrice,
@@ -6,19 +8,39 @@ function Results({
   referencePrice,
   betPrice,
   betType,
+  credits,
+  setCredits,
 }) {
   const tryAgain = () => {
     setReferencePrice(null);
     setShowResults(false);
     setBetType(null);
   };
+
+  const restartCredits = () => {
+    setCredits(3);
+    setReferencePrice(null);
+    setShowResults(false);
+    setBetType(null);
+  };
+
   return (
     <div>
-      <h1>{message}</h1>
-      <p>Ref price: {referencePrice}</p>
-      <p>Price at the time of the bet: {betPrice}</p>
-      <p>You bet the price would go {betType}</p>
-      <button onClick={tryAgain}>Try again</button>
+      {credits > 4 ? (
+        <>
+          <ConfettiExplosion />
+          <h1>YOU WIN</h1>
+          <button onClick={restartCredits}>Start Over</button>
+        </>
+      ) : (
+        <div>
+          <h1>{message}</h1>
+          <p>Ref price: {referencePrice}</p>
+          <p>Price at the time of the bet: {betPrice}</p>
+          <p>You bet the price would go {betType}</p>
+          <button onClick={tryAgain}>Try again</button>
+        </div>
+      )}
     </div>
   );
 }

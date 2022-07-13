@@ -3,7 +3,6 @@ import './App.css';
 import { useState } from 'react';
 import Results from './components/Results';
 // added button from Antd library, at the moment is not really kicking in
-import { button } from 'antd';
 // import styled, { css } from 'styled-components';
 import styled from 'styled-components';
 
@@ -76,6 +75,7 @@ function App() {
       setMessage("It's a tie, try again");
     } else {
       setMessage('You Win!! Bravo!!');
+      setCredits(credits + 1);
     }
   };
 
@@ -164,11 +164,16 @@ function App() {
               setShowResults={setShowResults}
               setBetType={setBetType}
               betType={betType}
+              credits={credits}
+              setCredits={setCredits}
             />
           </StyledResultsContainer>
         )}
         <br />
         <h3>Credits left: {credits}</h3>
+      </div>
+      <div className="progress-bar-outside">
+        <div className="progress-bar-inside"></div>
       </div>
     </div>
   );
