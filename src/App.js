@@ -84,7 +84,7 @@ function App() {
       <div className="card-content">
         <h1 className="title">CRYPTO-DICE</h1>
         <p className="tagline">
-          The game to bet on your coin's next transaction
+          The game to bet on your coin's value
         </p>
         <br />
         {/* Dropdown menu to select what currency we want to be playing with */}
