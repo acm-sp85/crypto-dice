@@ -2,8 +2,8 @@ import CurrencyPrice from './components/CurrencyPrice';
 import './App.css';
 import { useState } from 'react';
 import Results from './components/Results';
-// added Button from Antd library, at the moment is not really kicking in
-import { Button } from 'antd';
+// added button from Antd library, at the moment is not really kicking in
+import { button } from 'antd';
 // import styled, { css } from 'styled-components';
 import styled from 'styled-components';
 
@@ -49,7 +49,7 @@ function App() {
     currency: 'USD',
   }).format(currentPrice);
 
-  // function to setReferencePrice when Button onClick
+  // function to setReferencePrice when button onClick
   const selectReference = () => {
     setReferencePrice(formattedCurrency);
     console.log('reference: ' + formattedCurrency);
@@ -81,75 +81,89 @@ function App() {
 
   return (
     <div className="main-container">
-      <h1>crypto-dice</h1>
-      <p>The game to bet on your coin's next transaction</p>
-      <br />
-      {/* Dropdown menu to select what currency we want to be playing with */}
-      <select id="currency" value={currency} onChange={selectCurrency}>
-        <option value="BTC">Bitcoin (BTC)</option>
-        <option value="ETH">Ethereum (ETH)</option>
-        <option value="DOGE">Dogecoin (DOGE)</option>
-        <option value="ADA">Cardano (ADA)</option>
-      </select>
-      {/* passing setLivePrice as a prop to our CurrencyPrice component */}
-      <CurrencyPrice
-        setCurrentPrice={setCurrentPrice}
-        referencePrice={referencePrice}
-        currency={currency}
-      />
+      <div className="card-content">
+        <h1 className="title">CRYPTO-DICE</h1>
+        <p className="tagline">
+          The game to bet on your coin's next transaction
+        </p>
+        <br />
+        {/* Dropdown menu to select what currency we want to be playing with */}
+        <select id="currency" value={currency} onChange={selectCurrency}>
+          <option value="BTC">Bitcoin (BTC)</option>
+          <option value="ETH">Ethereum (ETH)</option>
+          <option value="DOGE">Dogecoin (DOGE)</option>
+          <option value="ADA">Cardano (ADA)</option>
+        </select>
+        {/* passing setLivePrice as a prop to our CurrencyPrice component */}
+        <CurrencyPrice
+          setCurrentPrice={setCurrentPrice}
+          referencePrice={referencePrice}
+          currency={currency}
+        />
 
-      <br />
-      <div>
-        {referencePrice ? (
-          <>
-            <p>Your reference price was set at {referencePrice}</p>
-            <p>Now bet to see if the price is going up or down...</p>
-            <br />
-            <Button
-              disabled={betType === DOWN_TYPE}
-              onClick={() => setBetType(UP_TYPE)}
-            >
-              🔺
-            </Button>
-            <Button
-              disabled={betType === UP_TYPE}
-              onClick={() => setBetType(DOWN_TYPE)}
-            >
-              🔻
-            </Button>
-          </>
-        ) : (
-          <>
-            <p>Start by selecting a reference price</p>
-            <br />
-            {credits > 0 ? (
-              <Button onClick={selectReference}>set reference</Button>
-            ) : (
-              <Button onClick={() => setCredits(3)}>buy more credits</Button>
-            )}
-          </>
+        <br />
+        <div>
+          {referencePrice ? (
+            <>
+              <p>Your reference price was set at {referencePrice}</p>
+              <p>Now bet to see if the price is going up or down...</p>
+              <br />
+              <button
+                className="custom-button"
+                disabled={betType === DOWN_TYPE}
+                onClick={() => setBetType(UP_TYPE)}
+              >
+                🔺
+              </button>
+              <button
+                className="custom-button"
+                disabled={betType === UP_TYPE}
+                onClick={() => setBetType(DOWN_TYPE)}
+              >
+                🔻
+              </button>
+            </>
+          ) : (
+            <>
+              <p>Start by selecting a reference price</p>
+              <br />
+              {credits > 0 ? (
+                <button onClick={selectReference} className="custom-button">
+                  set reference
+                </button>
+              ) : (
+                <button onClick={() => setCredits(3)} className="custom-button">
+                  buy more credits
+                </button>
+              )}
+            </>
+          )}
+        </div>
+        <button
+          disabled={!betType}
+          onClick={checkPrice}
+          className="custom-button"
+        >
+          check!
+        </button>
+        <br />
+        {showResults && (
+          <StyledResultsContainer>
+            {/* If we have results to show we render the Results component */}
+            <Results
+              message={message}
+              setReferencePrice={setReferencePrice}
+              referencePrice={referencePrice}
+              betPrice={betPrice}
+              setShowResults={setShowResults}
+              setBetType={setBetType}
+              betType={betType}
+            />
+          </StyledResultsContainer>
         )}
+        <br />
+        <h3>Credits left: {credits}</h3>
       </div>
-      <Button disabled={!betType} onClick={checkPrice}>
-        check!
-      </Button>
-      <br />
-      {showResults && (
-        <StyledResultsContainer>
-          {/* If we have results to show we render the Results component */}
-          <Results
-            message={message}
-            setReferencePrice={setReferencePrice}
-            referencePrice={referencePrice}
-            betPrice={betPrice}
-            setShowResults={setShowResults}
-            setBetType={setBetType}
-            betType={betType}
-          />
-        </StyledResultsContainer>
-      )}
-      <br />
-      <h3>Credits left: {credits}</h3>
     </div>
   );
 }

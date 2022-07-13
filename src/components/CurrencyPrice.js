@@ -69,7 +69,6 @@ const CurrencyPrice = ({ setCurrentPrice, referencePrice, currency }) => {
         {referencePrice || formattedCurrency}
         {currency}
       </StyledPriceContainer>
-      ;
     </div>
   );
 };
