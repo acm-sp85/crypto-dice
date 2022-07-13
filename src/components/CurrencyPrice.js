@@ -72,7 +72,7 @@ const CurrencyPrice = ({ setCurrentPrice, referencePrice, currency }) => {
           fontSize: '3rem',
         }}
       >
-        {referencePrice || formattedCurrency}
+        {referencePrice || formattedCurrency}-
         {currency}
       </StyledPriceContainer>
     </div>

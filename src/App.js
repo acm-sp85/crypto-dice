@@ -83,9 +83,7 @@ function App() {
     <div className="main-container">
       <div className="card-content">
         <h1 className="title">CRYPTO-DICE</h1>
-        <p className="tagline">
-          The game to bet on your coin's value
-        </p>
+        <p className="tagline">The game to bet on your coin's value</p>
         <br />
         {/* Dropdown menu to select what currency we want to be playing with */}
         <select
@@ -98,6 +96,8 @@ function App() {
           <option value="ETH">Ethereum (ETH)</option>
           <option value="DOGE">Dogecoin (DOGE)</option>
           <option value="ADA">Cardano (ADA)</option>
+          <option value="ATOM">Atom (ATOM)</option>
+          <option value="FTM">Fantom (FTM)</option>
         </select>
         {/* passing setLivePrice as a prop to our CurrencyPrice component */}
         <CurrencyPrice
