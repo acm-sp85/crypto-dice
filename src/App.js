@@ -95,10 +95,10 @@ function App() {
         >
           <option value="BTC">Bitcoin (BTC)</option>
           <option value="ETH">Ethereum (ETH)</option>
-          <option value="DOGE">Dogecoin (DOGE)</option>
+          {/* <option value="DOGE">Dogecoin (DOGE)</option>
           <option value="ADA">Cardano (ADA)</option>
           <option value="ATOM">Atom (ATOM)</option>
-          <option value="FTM">Fantom (FTM)</option>
+          <option value="FTM">Fantom (FTM)</option> */}
         </select>
         {/* passing setLivePrice as a prop to our CurrencyPrice component */}
         <CurrencyPrice
