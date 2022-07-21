@@ -7616,6 +7616,15 @@
     "rc-util" "^5.4.0"
     "shallowequal" "^1.1.0"
 
+"rc-progress@^3.4.0":
+  "integrity" "sha512-ZuMyOzzTkZnn+EKqGQ7YHzrvGzBtcCCVjx1McC/E/pMTvr6GWVfVRSawDlWsscxsJs7MkqSTwCO6Lu4IeoY2zQ=="
+  "resolved" "https://registry.npmjs.org/rc-progress/-/rc-progress-3.4.0.tgz"
+  "version" "3.4.0"
+  dependencies:
+    "@babel/runtime" "^7.10.1"
+    "classnames" "^2.2.6"
+    "rc-util" "^5.16.1"
+
 "rc-progress@~3.3.2":
   "integrity" "sha512-MDVNVHzGanYtRy2KKraEaWeZLri2ZHWIRyaE1a9MQ2MuJ09m+Wxj5cfcaoaR6z5iRpHpA59YeUxAlpML8N4PJw=="
   "resolved" "https://registry.npmjs.org/rc-progress/-/rc-progress-3.3.3.tgz"

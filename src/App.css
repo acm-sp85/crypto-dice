@@ -1,3 +1,10 @@
+/* 
+desktop: 1200px
+laptop: 992px
+tablet: 768px
+phone: 480px
+*/
+
 * {
   margin: 0px;
 }
@@ -35,10 +42,10 @@ p {
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
-  background-color: rgba(255, 255, 255, 0.043);
-  box-shadow: 20px 20px 2px rgba(0, 0, 0, 0.05);
-  width: 30vw;
+  width: 450px;
   height: 500px;
+  box-shadow: 20px 20px 2px rgba(0, 0, 0, 0.05);
+  background-color: rgba(255, 255, 255, 0.043);
 }
 
 .custom-button {
@@ -72,38 +79,8 @@ p {
   width: 400px;
   height: 18px;
   border-radius: 30px;
-  /* transition: 0.4s linear;
-  transition-property: width; */
-  border-color: rgba(0, 0, 0, 0.32);
-  border-style: outset;
-}
-
-.progress-bar-inside {
-  margin-top: 0px;
-  width: 400px;
-  height: 18px;
-  border-radius: 30px;
   transition: 0.4s linear;
   transition-property: width;
-  background-color: rgba(6, 136, 6, 0.603);
-  animation: progress 5s infinite;
-}
-
-@keyframes progress {
-  0% {
-    width: 0%;
-    background: #bc0000;
-  }
-
-  50% {
-    width: 50%;
-    background: rgba(86, 136, 6, 0.603);
-    box-shadow: 0 0 20px rgba(86, 136, 6, 0.359);
-  }
-
-  100% {
-    width: 100%;
-    background: rgba(6, 136, 6, 0.603);
-    box-shadow: 0 0 20px rgba(6, 136, 6, 0.359);
-  }
+  border-color: rgba(0, 0, 0, 0.32);
+  border-style: outset;
 }

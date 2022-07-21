@@ -5,6 +5,7 @@ import Results from './components/Results';
 // added button from Antd library, at the moment is not really kicking in
 // import styled, { css } from 'styled-components';
 import styled from 'styled-components';
+import { Line } from 'rc-progress';
 
 const UP_TYPE = 'up';
 const DOWN_TYPE = 'down';
@@ -94,10 +95,10 @@ function App() {
         >
           <option value="BTC">Bitcoin (BTC)</option>
           <option value="ETH">Ethereum (ETH)</option>
-          <option value="DOGE">Dogecoin (DOGE)</option>
+          {/* <option value="DOGE">Dogecoin (DOGE)</option>
           <option value="ADA">Cardano (ADA)</option>
           <option value="ATOM">Atom (ATOM)</option>
-          <option value="FTM">Fantom (FTM)</option>
+          <option value="FTM">Fantom (FTM)</option> */}
         </select>
         {/* passing setLivePrice as a prop to our CurrencyPrice component */}
         <CurrencyPrice
@@ -173,7 +174,17 @@ function App() {
         <h3>Credits left: {credits}</h3>
       </div>
       <div className="progress-bar-outside">
-        <div className="progress-bar-inside"></div>
+        <Line
+          percent={credits * 10}
+          strokeWidth={4.5}
+          strokeColor={
+            `${credits}` >= 3 ? 'rgba(6, 136, 6)' : 'rgba(188, 0, 0, 0.8)'
+          }
+          trailColor={
+            credits >= 3 ? 'rgba(6, 136, 6, 0.1)' : 'rgba(188, 0, 0, 0.132)'
+          }
+          trailWidth={0}
+        />
       </div>
     </div>
   );
