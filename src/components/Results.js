@@ -38,7 +38,13 @@ function Results({
           <p>Ref price: {referencePrice}</p>
           <p>Price at the time of the bet: {betPrice}</p>
           <p>You bet the price would go {betType}</p>
-          <button onClick={tryAgain}>Try again</button>
+          <button
+            onClick={tryAgain}
+            className="custom-button"
+            style={{ marginTop: '20px' }}
+          >
+            Try again
+          </button>
         </div>
       )}
     </div>

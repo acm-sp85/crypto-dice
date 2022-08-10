@@ -16,6 +16,8 @@ const StyledResultsContainer = styled.div`
   align-items: center;
   justify-content: center;
   text-align: center;
+  line-height: 3rem;
+  font-size: 1.3rem;
   position: fixed;
   display: flex;
   -ms-flex-wrap: wrap;
@@ -28,8 +30,13 @@ const StyledResultsContainer = styled.div`
   width: 100%;
   height: 100%;
   z-index: 100;
-  background-color: rgba(31, 32, 41, 0.838);
+  background-color: rgba(20, 30, 55, 0.9);
   opacity: 1;
+
+  @media (max-width: 600px) {
+    font-size: 1rem;
+    line-height: 2.5rem;
+  }
 `;
 
 function App() {
