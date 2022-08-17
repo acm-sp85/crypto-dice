@@ -50,11 +50,11 @@ const CurrencyPrice = ({ setCurrentPrice, referencePrice, currency }) => {
 
   // if no error or data, assume it's loading
   if (!socketError && !currencyPrice) {
-    return <div style={{ color: 'white' }}>Loading ...</div>;
+    return <div data-test="currency-loading-text" style={{ color: 'white' }}>Loading ...</div>;
   }
 
   if (socketError) {
-    return <div style={{ color: 'white' }}>Error: {socketError}</div>;
+    return <div style={{ color: 'white' }}>Erro Fr: {socketError}</div>;
   }
 
   const formattedCurrency = new Intl.NumberFormat('en-US', {
@@ -72,7 +72,7 @@ const CurrencyPrice = ({ setCurrentPrice, referencePrice, currency }) => {
           fontSize: '3rem',
         }}
       >
-        {referencePrice || formattedCurrency}-
+        <span data-test="formatted-reference-price">{referencePrice || formattedCurrency}</span>-
         {currency}
       </StyledPriceContainer>
     </div>
