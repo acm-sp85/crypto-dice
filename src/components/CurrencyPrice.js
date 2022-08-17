@@ -54,7 +54,7 @@ const CurrencyPrice = ({ setCurrentPrice, referencePrice, currency }) => {
   }
 
   if (socketError) {
-    return <div style={{ color: 'white' }}>Erro Fr: {socketError}</div>;
+    return <div style={{ color: 'white' }}>Error: {socketError}</div>;
   }
 
   const formattedCurrency = new Intl.NumberFormat('en-US', {
