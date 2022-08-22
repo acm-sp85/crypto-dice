@@ -143,8 +143,13 @@ function App() {
               <p>Start by selecting a reference price</p>
               <br />
               {credits > 0 ? (
-                <button data-test="set-reference-button" onClick={selectReference} className="custom-button">
-                  set reference
+                <button
+                  data-test="set-reference-button"
+                  data-testid="set-reference-button"
+                  onClick={selectReference}
+                  className="custom-button"
+                >
+                  SET REFERENCE
                 </button>
               ) : (
                 <button onClick={() => setCredits(3)} className="custom-button">
@@ -156,6 +161,7 @@ function App() {
         </div>
         <button
           data-test="check-bet-cta"
+          data-testid="check-bet-cta"
           disabled={!betType}
           onClick={checkPrice}
           className="custom-button"

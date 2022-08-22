@@ -40,6 +40,7 @@ function Results({
           <p>You bet the price would go {betType}</p>
           <button
             data-test="try-again-cta"
+            data-testid="try-again-cta"
             onClick={tryAgain}
             className="custom-button"
             style={{ marginTop: '20px' }}

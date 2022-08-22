@@ -24,9 +24,8 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
-import 'cypress-wait-until'
+import 'cypress-wait-until';
 
-Cypress.Commands.add('getBySelector', (selector, ...args) => {  
-    return cy.get(`[data-test=${selector}]`, ...args)
-  })
-
+Cypress.Commands.add('getBySelector', (selector, ...args) => {
+  return cy.get(`[data-test=${selector}]`, ...args);
+});
