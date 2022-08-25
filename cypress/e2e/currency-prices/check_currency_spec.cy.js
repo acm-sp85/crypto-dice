@@ -6,8 +6,8 @@ describe('currency price page', () => {
   });
 
   it('can show the correct default price', () => {
-    // FIXME: here is the real comment - this will cause  a merge
-    // conflict and we can resolve it
+    // FIXME: why isn't waitUntil working?
+
     // cy.waitUntil(() => {
     //   return cy.getBySelector('currency-loading-text').should('not.be.visible');
     // });
