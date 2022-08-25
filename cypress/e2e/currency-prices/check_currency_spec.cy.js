@@ -6,7 +6,7 @@ describe('currency price page', () => {
   });
 
   it('can show the correct default price', () => {
-    // FIXME: why isn't waitUntil working?
+    // FIXME: why isn't waitUntil working? I don't know
     // Surprise Alex!!!
 
     // cy.waitUntil(() => {
