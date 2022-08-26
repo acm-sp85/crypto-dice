@@ -6,12 +6,9 @@ describe('currency price page', () => {
   });
 
   it('can show the correct default price', () => {
-    // FIXME: why isn't waitUntil working? I don't know
-    // Surprise Alex!!!
-
-    // cy.waitUntil(() => {
-    //   return cy.getBySelector('currency-loading-text').should('not.be.visible');
-    // });
+    cy.waitUntil(() => {
+      return cy.getBySelector('formatted-reference-price').should('be.visible');
+    });
 
     // check correct default value is 3
     cy.getBySelector('credits-left-count').first().should('contain', '3');
@@ -24,11 +21,6 @@ describe('currency price page', () => {
 
     // click the bet up button
     cy.getBySelector('bet-up-button').click();
-
-    // TODO: shouldn't have arbitrary wait times
-    // fix cy.waitUntil currency-loading-text doesn't exist
-    // cy.wait(3000)
-    // cy.getBySelector('currency-loading-text');
 
     // check that the check button is now visible
     cy.getBySelector('check-bet-cta').should('be.visible');
