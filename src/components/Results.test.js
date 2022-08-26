@@ -6,5 +6,5 @@ test('displays something', () => {
 
   const button = screen.getByTestId('try-again-cta');
 
-  expect(button).exist()
+  expect(button).toHaveTextContent('Try again');
 });
