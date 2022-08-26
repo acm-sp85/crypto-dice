@@ -33,4 +33,10 @@ describe('currency price page', () => {
     // FIXME: assume it wasn't a tie - add logic to catch tie later
     cy.getBySelector('credits-left-count').first().should('not.contain', '3');
   });
+
+  it.skip('can change the crypto currency and make a bet', () => {
+    // similar to above, but change the currency first
+    // bonus points: you convert the reusable parts from the test
+    // above and use it in that and this test
+  })
 });
