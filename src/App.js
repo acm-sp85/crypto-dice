@@ -1,6 +1,6 @@
 import CurrencyPrice from './components/CurrencyPrice';
 import './App.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Results from './components/Results';
 // added button from Antd library, at the moment is not really kicking in
 // import styled, { css } from 'styled-components';
@@ -49,6 +49,7 @@ function App() {
   const [showResults, setShowResults] = useState(false);
   const [message, setMessage] = useState(null);
   const [credits, setCredits] = useState(3);
+  const [disclaimer, setDisclaimer] = useState(true);
 
   // instantiating our currency formatter
   let formattedCurrency = new Intl.NumberFormat('en-US', {
@@ -89,6 +90,28 @@ function App() {
 
   return (
     <div className="main-container">
+      {disclaimer && (
+        <StyledResultsContainer>
+          <h3>CryptoDice uses Binance Data</h3>
+          <p>
+            Due to regulatory restrictions in the US, Singapore, Canada, and
+            certain regions in the UK, real-time data might not be able at this
+            time.
+          </p>
+          <p>
+            However, if you can't wait to try the game we recommend using a VPN
+            :)
+          </p>
+          <button
+            className="custom-button"
+            onClick={() => {
+              setDisclaimer(false);
+            }}
+          >
+            Got it!
+          </button>
+        </StyledResultsContainer>
+      )}
       <div className="card-content">
         <h1 className="title">CRYPTO-DICE</h1>
         <p className="tagline">The game to bet on your coin's value</p>
