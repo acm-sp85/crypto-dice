@@ -122,6 +122,7 @@ function App() {
               <p>Now bet to see if the price is going up or down...</p>
               <br />
               <button
+                data-test="bet-up-button"
                 className="custom-button"
                 disabled={betType === DOWN_TYPE}
                 onClick={() => setBetType(UP_TYPE)}
@@ -129,6 +130,7 @@ function App() {
                 🔺
               </button>
               <button
+                data-test="bet-down-button"
                 className="custom-button"
                 disabled={betType === UP_TYPE}
                 onClick={() => setBetType(DOWN_TYPE)}
@@ -141,8 +143,13 @@ function App() {
               <p>Start by selecting a reference price</p>
               <br />
               {credits > 0 ? (
-                <button onClick={selectReference} className="custom-button">
-                  set reference
+                <button
+                  data-test="set-reference-button"
+                  data-testid="set-reference-button"
+                  onClick={selectReference}
+                  className="custom-button"
+                >
+                  SET REFERENCE
                 </button>
               ) : (
                 <button onClick={() => setCredits(3)} className="custom-button">
@@ -153,6 +160,8 @@ function App() {
           )}
         </div>
         <button
+          data-test="check-bet-cta"
+          data-testid="check-bet-cta"
           disabled={!betType}
           onClick={checkPrice}
           className="custom-button"
@@ -178,7 +187,7 @@ function App() {
           </StyledResultsContainer>
         )}
         <br />
-        <h3>Credits left: {credits}</h3>
+        <h3 data-test="credits-left-count">Credits left: {credits}</h3>
       </div>
       <div className="progress-bar-outside">
         <Line
