@@ -28,6 +28,7 @@ const CurrencyPrice = ({ setCurrentPrice, referencePrice, currency }) => {
     currencySocket.onmessage = function (event) {
       let messageObject = JSON.parse(event.data);
       setCurrencyPrice(messageObject.p);
+
       // bubbling up the price to our App's state
       setCurrentPrice(messageObject.p);
     };

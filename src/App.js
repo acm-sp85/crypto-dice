@@ -39,6 +39,34 @@ const StyledResultsContainer = styled.div`
   }
 `;
 
+const StyledDisclaimer = styled.div`
+  margin-top: 45vh;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  line-height: 3rem;
+  font-size: 2rem;
+  position: fixed;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -ms-flex-pack: center;
+  justify-content: center;
+  margin: 0 auto;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  background-color: rgba(20, 30, 55, 0.9);
+  opacity: 1;
+
+  @media (max-width: 600px) {
+    font-size: 1rem;
+    line-height: 2.5rem;
+  }
+`;
+
 function App() {
   //adding pieces of state with the currentPrice of our currency, our Reference selection, our BetBehaviour and the NextPrice
   const [currency, setCurrency] = useState('BTC');
@@ -49,7 +77,17 @@ function App() {
   const [showResults, setShowResults] = useState(false);
   const [message, setMessage] = useState(null);
   const [credits, setCredits] = useState(3);
-  const [disclaimer, setDisclaimer] = useState(true);
+  const [disclaimer, setDisclaimer] = useState(false);
+
+  useEffect(() => {
+    fetch('https://ipapi.co/json')
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.country === 'US') {
+          setDisclaimer(true);
+        }
+      });
+  }, [currency]);
 
   // instantiating our currency formatter
   let formattedCurrency = new Intl.NumberFormat('en-US', {
@@ -91,30 +129,37 @@ function App() {
   return (
     <div className="main-container">
       {disclaimer && (
-        <StyledResultsContainer>
-          <h3>CryptoDice uses Binance Data</h3>
+        <StyledDisclaimer>
+          <h3>Crypto-Dice runs on binance.com data</h3>
           <p>
-            Due to regulatory restrictions in the US, Singapore, Canada, and
-            certain regions in the UK, real-time data might not be able at this
-            time.
+            Due to regulatory restrictions in the US real-time data might not be
+            available at this time.
           </p>
-          <p>
-            However, if you can't wait to try the game we recommend using a VPN
-            :)
-          </p>
+          <p>We recommend using a VPN or watching this demo video.</p>
           <button
             className="custom-button"
             onClick={() => {
               setDisclaimer(false);
             }}
           >
-            Got it!
+            Force app!
           </button>
-        </StyledResultsContainer>
+          <button
+            className="custom-button"
+            onClick={() => {
+              window.open(
+                'https://vimeo.com/alexcontell/crypto-dice?share=copy',
+                '_blank'
+              );
+            }}
+          >
+            Watch video
+          </button>
+        </StyledDisclaimer>
       )}
       <div className="card-content">
         <h1 className="title">CRYPTO-DICE</h1>
-        <p className="tagline">The game to bet on your coin's value</p>
+        <p className="tagline">A game to bet on crypto's value</p>
         <br />
         {/* Dropdown menu to select what currency we want to be playing with */}
         <select
